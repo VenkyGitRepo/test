@@ -1,0 +1,42 @@
+# .github/workflows/ci-pipeline.yml
+
+name: Hello DevOps CI Pipeline
+
+on:
+  push:
+    branches:
+      - main # Trigger on pushes to the 'main' branch
+      - develop # Or any other development branch you use
+
+  pull_request:
+    branches:
+      - main # Trigger on pull requests targeting 'main'
+      - develop
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # The virtual machine environment where the job will run
+
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4 # Action to clone your repository onto the runner
+
+      - name: Set up Node.js Environment
+        uses: actions/setup-node@v4 # GitHub Action to set up Node.js
+        with:
+          node-version: '18' # <--- IMPORTANT: This is where you adjust the Node.js version.
+                              # Use the version your project is built with (e.g., '16', '20', '22')
+
+      - name: Install Project Dependencies
+        run: npm ci # Installs dependencies based on package-lock.json (recommended for CI)
+
+      - name: Run Unit and Integration Tests
+        run: npm test # Assumes you have a 'test' script in your package.json
+
+      # Optional: Uncomment and adjust if your project needs a build step (e.g., for frontend frameworks)
+      # - name: Build Application
+      #   run: npm run build # Assumes you have a 'build' script in package.json
+
+      # Optional: Uncomment and adjust if you have a linter
+      # - name: Run Code Linter
+      #   run: npm run lint # Assumes you have a 'lint' script in package.json
