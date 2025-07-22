@@ -1,56 +1,59 @@
-# .github/workflows/ci-pipeline.yml
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello DevOps App</title>
+    <style>
+        /* Basic CSS for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .highlight {
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to My Hello DevOps App!</h1>
+        <p>This is a simple static webpage deployed using a <span class="highlight">DevOps CI/CD Pipeline</span>.</p>
+        <p>We're learning to automate the software delivery process.</p>
+        <p>Stay tuned for more updates!</p>
+    </div>
 
-name: HTML Static Site CI Pipeline
-
-on:
-  push:
-    branches:
-      - main # Trigger on pushes to the 'main' branch
-      - develop # Or any other development branch you use
-
-  pull_request:
-    branches:
-      - main # Trigger on pull requests targeting 'main'
-      - develop
-
-jobs:
-  validate-static-files:
-    runs-on: ubuntu-latest # A standard Ubuntu virtual machine for the job
-
-    steps:
-      - name: Checkout Repository Code
-        uses: actions/checkout@v4 # Essential: downloads your code onto the runner
-
-      # --- Optional: Add steps for linting/validation if you have them ---
-      # If you have CSS or JavaScript files, you might want to lint them.
-      # This requires installing relevant linters (e.g., stylelint for CSS, eslint for JS)
-      # and configuring them.
-
-      # Example: Setting up Node.js for a JS linter (even if it's not a Node.js 'project')
-      # - name: Set up Node.js for Linting (if you have JS/CSS)
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: '18' # A recent LTS version is usually fine for linting tools
-
-      # Example: Install a linter for HTML (e.g., HTMLHint)
-      # You'd need to add 'htmlhint' to a package.json in your project, or install it globally on the runner.
-      # For simplicity, if you're just starting, you might skip complex linting for now.
-      # - name: Install HTML Linter
-      #   run: npm install -g htmlhint # Or add to package.json and run 'npm ci'
-
-      # - name: Run HTML Lint
-      #   run: htmlhint . # Assumes HTMLHint is installed and configured
-
-      # --- Basic Validation (Always useful) ---
-      - name: Check for file presence (Basic sanity check)
-        run: |
-          ls -l
-          if [ ! -f index.html ]; then # Adjust filename if it's not index.html
-            echo "Error: index.html not found in the repository root."
-            exit 1
-          fi
-          echo "index.html found. Basic file check passed."
-
-      # You typically don't have "tests" in the same way a dynamic application does
-      # for a purely static HTML file unless you're using a testing framework
-      # like Cypress or Playwright for end-to-end tests, which is a more advanced topic.
+    <script>
+        // Optional: Simple JavaScript to display current date
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const dateElement = document.createElement('p');
+            const currentDate = new Date();
+            dateElement.textContent = `Current Date: ${currentDate.toLocaleDateString()}`;
+            document.querySelector('.container').appendChild(dateElement);
+        });
+    </script>
+</body>
+</html>
