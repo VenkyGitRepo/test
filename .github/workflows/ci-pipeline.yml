@@ -5,12 +5,12 @@ name: Hello DevOps CI Pipeline
 on:
   push:
     branches:
-      - main # Trigger on pushes to the 'main' branch
+      - master # Trigger on pushes to the 'main' branch
       - develop # Or any other development branch you use
 
   pull_request:
     branches:
-      - main # Trigger on pull requests targeting 'main'
+      - master # Trigger on pull requests targeting 'main'
       - develop
 
 jobs:
